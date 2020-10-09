@@ -98,13 +98,13 @@ def test_get_first_movie(in_memory_repo):
     #get first movie released in 2009 since 2009 is the earliest year from our movie csv file.
     movie_as_dict = movies_services.get_first_movie(in_memory_repo)
 
-    assert movie_as_dict['id'] == 508
+    assert movie_as_dict['id'] == 1
 
 
 def test_get_last_article(in_memory_repo):
     movie_as_dict = movies_services.get_last_movie(in_memory_repo)
 
-    assert movie_as_dict['id'] == 75
+    assert movie_as_dict['id'] == 1000
 
 
 def test_get_movies_by_release_year_with_one_year(in_memory_repo):
