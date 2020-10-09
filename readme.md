@@ -21,7 +21,7 @@ When using PyCharm, set the virtual environment using 'File'->'Settings' and sel
 
 **Running the application**
 
-From the *COMPSCI-235* directory, and within the activated virtual environment (see *venv\Scripts\activate* above):
+From the *MovieWebApp* directory, and within the activated virtual environment (see *venv\Scripts\activate* above):
 
 ````shell
 $ flask run
@@ -30,7 +30,7 @@ $ flask run
 
 ## Configuration
 
-The *COMPSCI-235/.env* file contains variable settings. They are set with appropriate values.
+The *MovieWebApp/.env* file contains variable settings. They are set with appropriate values.
 
 * `FLASK_APP`: Entry point of the application (should always be `wsgi.py`).
 * `FLASK_ENV`: The environment in which to run the application (either `development` or `production`).
@@ -41,7 +41,7 @@ The *COMPSCI-235/.env* file contains variable settings. They are set with approp
 
 ## Testing
 
-Testing requires that file *COMPSCI-235/tests/conftest.py* be edited to set the value of `TEST_DATA_PATH`. You should set this to the absolute path of the *COMPSCI-235/tests/data* directory. 
+Testing requires that file *MovieWebApp/tests/conftest.py* be edited to set the value of `TEST_DATA_PATH`. You should set this to the absolute path of the *MovieWebApp/tests/data* directory. 
 
 E.g. 
 
@@ -49,7 +49,7 @@ E.g.
 
 assigns TEST_DATA_PATH with the following value (the use of os.path.join and os.sep ensures use of the correct platform path separator):
 
-`C:\Users\ian\Documents\python-dev\COVID-19\tests\data`
+`C:\Users\ian\Documents\python-dev\MovieWebApp\tests\data`
 
 You can then run tests from within PyCharm.
 
