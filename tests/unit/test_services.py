@@ -113,7 +113,7 @@ def test_get_movies_by_release_year_with_one_year(in_memory_repo):
     movies_as_dict = movies_services.get_movies_by_release_year(target_year, in_memory_repo)
 
     assert len(movies_as_dict) == 51
-    assert movies_as_dict[0]['id'] == 508
+    assert movies_as_dict[0]['id'] == 78
 
 
 def test_get_movies_by_release_year_with_non_existent_year(in_memory_repo):
