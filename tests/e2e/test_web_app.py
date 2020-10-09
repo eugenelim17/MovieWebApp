@@ -74,7 +74,7 @@ def test_review(client, auth):
         '/review',
         data={'review': 'Who needs quarantine?', 'movie_id': 2}
     )
-    assert response.headers['Location'] == 'http://localhost/movies_by_year?year=2009&view_reviews_for=2'
+    assert response.headers['Location'] == 'http://localhost/review?movie=2'
 
 
 @pytest.mark.parametrize(('review', 'messages'), (
@@ -96,42 +96,30 @@ def test_review_with_invalid_input(client, auth, review, messages):
         assert message in response.data
 
 
-def test_movies_without_date(client):
-    # Check that we can retrieve the articles page.
-    response = client.get('/movies_by_date')
+def test_movies_without_year(client):
+    # Check that we can retrieve the movies page.
+    response = client.get('/movies_by_year')
     assert response.status_code == 200
 
-    # Check that without providing a date query parameter the page includes the first movie.
-    assert b'Friday February 28 2020' in response.data
-    assert b'Coronavirus: First case of virus in New Zealand' in response.data
 
-
-def test_articles_with_date(client):
+def test_movies_with_release_year(client):
     # Check that we can retrieve the articles page.
-    response = client.get('/articles_by_date?date=2020-02-29')
+    response = client.get('/movies_by_year?release_year=2009')
     assert response.status_code == 200
 
-    # Check that all articles on the requested date are included on the page.
-    assert b'Saturday February 29 2020' in response.data
-    assert b'Covid 19 coronavirus: US deaths double in two days, Trump says quarantine not necessary' in response.data
+
+def test_movies_with_no_review(client):
+    # Check that we can retrieve the movie page.
+    response = client.get('review?movie=1')
+    assert response.status_code == 302
 
 
-def test_articles_with_comment(client):
-    # Check that we can retrieve the articles page.
-    response = client.get('/articles_by_date?date=2020-02-28&view_comments_for=1')
+def test_movies_with_genre(client):
+    # Check that we can retrieve the movie page.
+    response = client.get('/movies_by_genre?genre=Action')
     assert response.status_code == 200
 
-    # Check that all comments for specified article are included on the page.
-    assert b'Oh no, COVID-19 has hit New Zealand' in response.data
-    assert b'Yeah Freddie, bad news' in response.data
-
-
-def test_articles_with_tag(client):
-    # Check that we can retrieve the articles page.
-    response = client.get('/articles_by_tag?tag=Health')
-    assert response.status_code == 200
-
-    # Check that all articles tagged with 'Health' are included on the page.
-    assert b'Articles tagged by Health' in response.data
-    assert b'Coronavirus: First case of virus in New Zealand' in response.data
-    assert b'Covid 19 coronavirus: US deaths double in two days, Trump says quarantine not necessary' in response.data
+    # Check that all movues with genre 'Action' are included on the page.
+    assert b'Movies by genre: Action' in response.data
+    assert b'Guardians of the Galaxy' in response.data
+    assert b'A group of intergalactic criminals are forced to work together to stop a fanatical warrior from taking control of the universe.' in response.data
