@@ -9,7 +9,7 @@ A Web application that demonstrates use of Python's Flask framework. The applica
 **Installation via requirements.txt**
 
 ```shell
-$ cd COMPSCI-235
+$ cd MovieWebApp
 $ py -3 -m venv venv
 $ venv\Scripts\activate
 $ pip install -r requirements.txt
