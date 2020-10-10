@@ -72,7 +72,7 @@ class MemoryRepository(AbstractRepository, ABC):
         movie = None
 
         try:
-            movie = self._movies[id-1]
+            movie = self._movies[id - 1]
         except KeyError:
             pass  # Ignore exception and return None.
         except IndexError:
@@ -264,6 +264,16 @@ def load_movies_and_ids(data_path: str, repo: MemoryRepository):
         repo.add_movie_index(movie)
 
 
+def load_users_and_ids(data_path: str, repo: MemoryRepository):
+    ids = dict()
+    for row in read_csv_file(os.path.join(data_path, 'users.csv')):
+        user = User(row[1], (row[2]))
+
+        # Add the user to the repository.
+        repo.add_user(user)
+
+
 def populate(data_path: str, repo: MemoryRepository):
     # Load movies and genres into the repository.
     load_movies_and_ids(data_path, repo)
+    load_users_and_ids(data_path, repo)
