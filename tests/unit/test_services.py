@@ -23,7 +23,6 @@ def test_can_add_user(in_memory_repo):
 
 
 def test_cannot_add_user_with_existing_name(in_memory_repo):
-    auth_services.add_user('thorke', 'abadsf1A23', in_memory_repo)
     username = 'thorke'
     password = 'abcd1A23'
 
@@ -95,7 +94,6 @@ def test_cannot_get_movie_with_non_existent_id(in_memory_repo):
 
 
 def test_get_first_movie(in_memory_repo):
-    #get first movie released in 2009 since 2009 is the earliest year from our movie csv file.
     movie_as_dict = movies_services.get_first_movie(in_memory_repo)
 
     assert movie_as_dict['id'] == 1
@@ -162,5 +160,5 @@ def test_get_reviews_for_non_existent_movie(in_memory_repo):
 
 
 def test_get_reviews_for_movie_without_reviews(in_memory_repo):
-    comments_as_dict = movies_services.get_reviews_for_movie(2, in_memory_repo)
-    assert len(comments_as_dict) == 0
+    reviews_as_dict = movies_services.get_reviews_for_movie(2, in_memory_repo)
+    assert len(reviews_as_dict) == 0
