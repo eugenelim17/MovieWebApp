@@ -51,6 +51,11 @@ assigns TEST_DATA_PATH with the following value (the use of os.path.join and os.
 
 `C:\Users\ian\Documents\python-dev\MovieWebApp\tests\data`
 
-You can then run tests from within PyCharm.
+You can then run tests from within PyCharm. You may run it by typing: 
 
+````shell
+python -m pytest
+```` 
+
+in the command line.
  
