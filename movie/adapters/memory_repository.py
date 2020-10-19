@@ -265,12 +265,16 @@ def load_movies_and_ids(data_path: str, repo: MemoryRepository):
 
 
 def load_users_and_ids(data_path: str, repo: MemoryRepository):
-    ids = dict()
-    for row in read_csv_file(os.path.join(data_path, 'users.csv')):
-        user = User(row[1], (row[2]))
+    users = dict()
 
-        # Add the user to the repository.
+    for data_row in read_csv_file(os.path.join(data_path, 'users.csv')):
+        user = User(
+            username=data_row[1],
+            password=generate_password_hash(data_row[2])
+        )
         repo.add_user(user)
+        users[data_row[0]] = user
+    return users
 
 
 def populate(data_path: str, repo: MemoryRepository):
